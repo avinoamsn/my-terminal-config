@@ -2,7 +2,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# oh-my-zsh integration
 export ZSH="/home/avi/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -33,9 +32,11 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
+# oh-my-zsh integration
 source $ZSH/oh-my-zsh.sh
 
 # autojump - https://github.com/wting/autojump#automatic
+# NOTE - for Mac OS, use: [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 source /usr/share/autojump/autojump.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
