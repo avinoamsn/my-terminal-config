@@ -72,6 +72,12 @@ Additional instructions for setting up the development environment.
 5. Install the necessary fonts:
     - [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md) - used by powerlevel10k
     - [Fira Code](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions) - used by VS Code
+  
+### Working with macOS
+
+Additional instructions for setting up the development environment.
+
+1. Swap out the `autojump` sourcing line in `.zshrc` with the macOS equivalent (provided in an accompanying comment).
 
 ### Additional Packages
 
