@@ -2,6 +2,17 @@
 
 This repo contains a handful of files I use to customize my Zsh experience.
 
+## Table of Contents
+
+- [My Zsh Terminal Configuration](#my-zsh-terminal-configuration)
+  - [Table of Contents](#table-of-contents)
+  - [Instructions](#instructions)
+    - [Configure `git`/GitHub](#configure-gitgithub)
+    - [Set up VS Code](#set-up-vs-code)
+    - [Working with WSL](#working-with-wsl)
+    - [Working with macOS](#working-with-macos)
+    - [Additional Packages](#additional-packages)
+
 ## Instructions
 
 1. Copy the relevant configuration files to the home directory:
@@ -52,7 +63,7 @@ This repo contains a handful of files I use to customize my Zsh experience.
 
     Select the SSH authentication method, and follow the instructions.
 
-5. Instruct `gh` to use the new SSH key for verification (in addition to authentication):
+4. Instruct `gh` to use the new SSH key for verification (in addition to authentication):
 
     ```sh
     gh ssh-key add ~/.ssh/id_ed25519.pub --type signing
@@ -72,15 +83,16 @@ This repo contains a handful of files I use to customize my Zsh experience.
 Additional instructions for setting up the development environment.
 
 1. Install [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare)
-   a. Copy the contents of the `terminal.json` file to the Windows Terminal settings (_Settings_ -> _Open JSON File_).
+   i. Copy the contents of the `terminal.json` file to the Windows Terminal settings (_Settings_ -> _Open JSON File_).
 2. Install [Ubuntu](https://www.microsoft.com/store/productId/9PDXGNCFSCZV?ocid=pdpshare)
 3. Install [`wslu`](https://wslutiliti.es/wslu/install.html#ubuntu)
-  
+
 ### Working with macOS
 
 Additional instructions for setting up the development environment.
 
-1. Swap out the `autojump` sourcing line in `.zshrc` with the macOS equivalent (provided in an accompanying comment).
+1. Install [iTerm2](https://iterm2.com/)
+2. Swap out the `autojump` sourcing line in `.zshrc` with the macOS equivalent (provided in an accompanying comment).
 
 ### Additional Packages
 
