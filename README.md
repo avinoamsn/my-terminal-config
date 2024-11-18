@@ -60,7 +60,14 @@ This repo contains a handful of files I use to customize my Zsh experience.
 
     **NOTE:** The provided `.gitconfig` file already includes the necessary configuration to use the SSH key for commit verification. If your SSH key has a different location/filename, update the `signingkey` value to reflect this.
 
-### Working with WSL & VS Code
+### Set up VS Code
+
+1. Install [VS Code](https://apps.microsoft.com/store/detail/XP9KHM4BK9FZ7Q?ocid=pdpshare)
+2. Install the necessary fonts:
+    - [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md) - used by powerlevel10k
+    - [Fira Code](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions) - used by VS Code
+
+### Working with WSL
 
 Additional instructions for setting up the development environment.
 
@@ -68,10 +75,6 @@ Additional instructions for setting up the development environment.
    a. Copy the contents of the `terminal.json` file to the Windows Terminal settings (_Settings_ -> _Open JSON File_).
 2. Install [Ubuntu](https://www.microsoft.com/store/productId/9PDXGNCFSCZV?ocid=pdpshare)
 3. Install [`wslu`](https://wslutiliti.es/wslu/install.html#ubuntu)
-4. Install [VS Code](https://apps.microsoft.com/store/detail/XP9KHM4BK9FZ7Q?ocid=pdpshare)
-5. Install the necessary fonts:
-    - [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md) - used by powerlevel10k
-    - [Fira Code](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions) - used by VS Code
   
 ### Working with macOS
 
