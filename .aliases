@@ -17,8 +17,9 @@ function vsc() {
 # GIT & RELATED ALIASES
 ###########################
 
-# GIT (ohmyzsh alias extensions)
-alias gs=gst
+# NOTE - see `~/.gitconfig` for other git-centric aliases
+
+alias gs=gst                                       # git status (uses omz alias)
 alias gdo="head -n -1 commit.md | git commit -F -" # delete last line from `commit.md` (inline markdownlint config) & pass into git
 
 # GH PAGES
@@ -48,96 +49,3 @@ alias pym='python manage.py' # prepend to manage cmds (used by AMPSIGHT aliases 
 ###########################
 # PROJECT-SPECIFIC ALIASES
 ###########################
-
-# HITCH
-alias hitch-host='firebase deploy --only hosting:hitch-4caa0'
-
-# AMPSIGHT - CV
-# frontend scripts
-# NOTE - uses bun instead of npm (https://bun.sh/)
-function cvf() {
-	# start cv frontend
-	if [[ $1 == "start" ]]; then
-		start_usage() { echo 'Please specify "-b" (beta) or "-l" (local).'; }
-
-		OPTIND=2 # `getopts` uses optind to find option args (more: https://unix.stackexchange.com/a/140904/413465)
-		while getopts 'bdl' flag; do
-			case "${flag}" in
-			b) eval 'CV_API_URL=https://cloudvector-api-beta.ampsight.io bun start' ;; # run against beta backend
-			d) eval 'CV_API_URL=https://cloudvector-api.ampsight.io bun start' ;;      # run against demo backend
-			l) eval 'CV_API_URL=http://127.0.0.1:8000 bun start' ;;                    # run against local backend
-			*) start_usage ;;
-			esac
-		done
-
-		# displays usage msg if no options are passed (more: https://unix.stackexchange.com/a/50648/413465)
-		if [ $OPTIND -eq 2 ]; then start_usage; fi
-
-	else
-		echo "Valid commands are: \`start -([b]eta|[d]emo|[l]ocal)\`."
-	fi
-}
-
-# backend scripts
-# NOTE - venv sourcing is automatically done on `cd ~/cv.server` (see `load-venv` in `~/.profile` for info)
-function cvb() {
-	usage() { echo "Please specify a valid command: \`run\`, \`spin-up -([d]ocker|[l]ocal)\`, or \`reset\`."; }
-
-	# check if postgres is running & start it if not (the service is required by the following commands)
-	handle_postgresql() {
-		if ! pgrep -x "postgres" >/dev/null; then
-			echo 'PostgreSQL service is not running. Attempting to start...'
-			eval 'sudo service postgresql start'
-		fi
-	}
-
-	handle_start() {
-		eval 'pym migrate && make loaddata && pym runserver'
-	}
-
-	# run CV backend
-	if [[ $1 == "run" ]]; then
-		handle_postgresql
-		eval 'cd ~/cv.server && pym runserver'
-
-	# build, populate, and launch dockerized CV backend
-	elif [[ $1 == "spin-up" ]]; then
-		cmd_usage() { echo 'Please specify "-d" (docker) or "-l" (local).'; }
-		OPTIND=2 # `getopts` uses optind to find option args (more: https://unix.stackexchange.com/a/140904/413465)
-		while getopts 'dl' flag; do
-			case "${flag}" in
-			# docker
-			# ! assumes that the last (top) stash contains updated `Makefile` & `scripts/create_role.sql` files
-			d)
-				handle_postgresql
-				# shellcheck disable=SC1004
-				eval 'cd ~/cv.server \
-							&& gco origin/postgres-and-readonly-user-passwords -- Makefile scripts/create_role.sql \
-							&& make install_database \
-							&& gco HEAD -- Makefile scripts/create_role.sql'
-				handle_start
-				;;
-			# local
-			# NOTE - the postgres database must already be created w/ `postgres` & `readonly` users
-			l)
-				handle_postgresql
-				# shellcheck disable=SC1004
-				eval 'cd ~/cv.server && pym reset_db --noinput'
-				handle_start
-				;;
-			*) cmd_usage ;;
-			esac
-		done
-
-		# displays usage msg if no options are passed (more: https://unix.stackexchange.com/a/50648/413465)
-		if [ $OPTIND -eq 2 ]; then cmd_usage; fi
-
-	elif [[ $1 == "reset" ]]; then
-		handle_postgresql
-		eval 'cd ~/cv.server; pym reset_db --noinput'
-
-	else
-		usage
-		return 1
-	fi
-}

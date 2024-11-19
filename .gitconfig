@@ -1,7 +1,7 @@
 [user]
 	name = Avi Nerenberg
-	email = devavmeister@gmail.com
-	signingkey = /home/avi/.ssh/id_ed25519.pub
+	email = anerenberg@tenable.com
+	signingkey = /Users/anerenberg/.ssh/id_ed25519.pub
 [core]
 	autocrlf = false
 	editor = code -w
@@ -27,12 +27,19 @@
 	open-pr-diff = ! gh pr diff --name-only | xargs -I {} code "{}"
 	# run ESLint on a PR's modified files
 	pr-lint = ! gh pr diff --name-only | xargs -I {} npx eslint --fix {}
+	# from: https://compiledsuccessfully.dev/git-skip-worktree/
+	# checks for any files flagged w/ --skip-worktree alias
+	check="git ls-files -v|grep '^S'"
+	# add --skip-worktree flag to file
+	skip = "! f() {  git update-index --skip-worktree "$@";  git status; }; f"
+	# remove --skip-worktree flag from file
+	unskip = "! f() {  git update-index --no-skip-worktree "$@";  git status; }; f"
 [commit]
 	gpgsign = true
 	signoff = true
 [gpg]
 	program = gpg
-	format = ssh # using `ssh` allows us to keep a uniform `signingkey` value that points to the SSH key's location, rather than a fingerprint specific to that GPG key (above)
+	format = ssh
 [filter "gitignore"]           # TODO - WIP https://stackoverflow.com/a/16244970/5425359
 	clean = "sed '/#gitignore$/d'" # ignore files ending in " #gitignore" (used by .gitconfig above)
 	smudge = cat
