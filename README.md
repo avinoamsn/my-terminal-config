@@ -83,9 +83,9 @@ This repo contains a handful of files I use to customize my Zsh experience.
 Additional instructions for setting up the development environment.
 
 1. Install [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare)
-   i. Copy the contents of the `terminal.json` file to the Windows Terminal settings (_Settings_ -> _Open JSON File_).
-2. Install [Ubuntu](https://www.microsoft.com/store/productId/9PDXGNCFSCZV?ocid=pdpshare)
-3. Install [`wslu`](https://wslutiliti.es/wslu/install.html#ubuntu)
+    1. Copy the contents of the `terminal.json` file to the Windows Terminal settings (_Settings_ -> _Open JSON File_).
+3. Install [Ubuntu](https://www.microsoft.com/store/productId/9PDXGNCFSCZV?ocid=pdpshare)
+4. Install [`wslu`](https://wslutiliti.es/wslu/install.html#ubuntu)
 
 ### Working with macOS
 
