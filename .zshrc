@@ -18,6 +18,7 @@ plugins=(
   fast-syntax-highlighting
   zsh-history-substring-search
   # virtualenvwrapper # NOTE - this plugin could replace the custom python venv activation func I have in `.profile` if I switched to `virtualenv`, which looks like a good alternative b/c it appears to be widely used & supported online
+  jira
 )
 
 # fix text pasting lag zsh-syntax-highlighting.zsh (from: https://gist.github.com/magicdude4eva/2d4748f8ef3e6bf7b1591964c201c1ab)
